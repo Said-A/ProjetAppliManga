@@ -28,6 +28,8 @@ class MangaAdapter(private var dataSet: List<Manga>) :
         notifyDataSetChanged()
     }
 
+
+
     // Create new views (invoked by the layout manager)
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
         // Create a new view, which defines the UI of the list item
@@ -43,7 +45,7 @@ class MangaAdapter(private var dataSet: List<Manga>) :
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
         val manga = dataSet[position]
-        viewHolder.textView.text = manga.name
+        viewHolder.textView.text = manga.title
     }
 
     // Return the size of your dataset (invoked by the layout manager)
