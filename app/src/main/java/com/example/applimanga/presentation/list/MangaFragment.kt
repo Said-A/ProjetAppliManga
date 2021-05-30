@@ -49,23 +49,26 @@ class MangaFragment : Fragment() {
         }
 
 
+
+
         Singletons.apiManga.getMangalist().enqueue(object : Callback<MangaResponse> {
-            override fun onResponse(call: Call<MangaResponse>, response: Response<MangaResponse> ) {
+            override fun onResponse(call: Call<MangaResponse>, response: Response<MangaResponse>) {
                 if (response.isSuccessful && response.body() != null) {
                     val mangaResponse: MangaResponse = response.body()!!
-                    Log.e(TAG,"TAG "+ mangaResponse.top)
+                    Log.e(TAG, "TAG " + mangaResponse.top)
                     adapter.updateList(mangaResponse.top)
                 }
             }
 
+
             override fun onFailure(call: Call<MangaResponse>, t: Throwable) {
-                Log.e(TAG,"essaye3 " + t.message)
+                Log.e(TAG, "essaye3 " + t.message)
             }
 
         })
-
-
     }
+
+
     private fun OnClickedManga(manga: Manga) {
         findNavController().navigate(R.id.navigationtoMangaDetail, bundleOf(
                 "mangaId" to manga.mal_id
