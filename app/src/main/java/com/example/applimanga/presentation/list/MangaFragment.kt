@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applimanga.R
+import com.example.applimanga.presentation.Singletons
 import com.example.applimanga.presentation.api.MangaApi
 import com.example.applimanga.presentation.api.MangaResponse
 import retrofit2.Call
@@ -28,7 +29,6 @@ class MangaFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private val adapter = MangaAdapter(listOf(), ::OnClickedManga)
 
-    private val layoutManager = LinearLayoutManager(context)
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,19 +43,12 @@ class MangaFragment : Fragment() {
 
         recyclerView = view.findViewById(R.id.manga_recycler)
         recyclerView.apply {
-            layoutManager = this@MangaFragment.layoutManager
+            layoutManager = LinearLayoutManager(context)
             adapter = this@MangaFragment.adapter
         }
 
 
-        val apiManga: MangaApi = Retrofit.Builder()
-            .baseUrl("https://api.jikan.moe/v3/")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(MangaApi::class.java)
-
-
-        apiManga.getMangalist().enqueue(object : Callback<MangaResponse> {
+        Singletons.apiManga.getMangalist().enqueue(object : Callback<MangaResponse> {
             override fun onResponse(call: Call<MangaResponse>, response: Response<MangaResponse> ) {
                 if (response.isSuccessful && response.body() != null) {
                     val mangaResponse: MangaResponse = response.body()!!
