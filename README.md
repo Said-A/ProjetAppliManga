@@ -6,4 +6,3 @@ Ansi qu'une deuxieme page avec une vue detaillé de chaque manga
 
 
 # Screens
-()
