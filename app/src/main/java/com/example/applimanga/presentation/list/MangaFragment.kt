@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.applimanga.R
@@ -25,7 +26,8 @@ class MangaFragment : Fragment() {
 
     private val TAG = "MangaFragment"
     private lateinit var recyclerView: RecyclerView
-    private val adapter = MangaAdapter(listOf())
+    private val adapter = MangaAdapter(listOf(), ::OnClickedManga)
+
     private val layoutManager = LinearLayoutManager(context)
 
     override fun onCreateView(
@@ -53,14 +55,12 @@ class MangaFragment : Fragment() {
             .create(MangaApi::class.java)
 
 
-
         apiManga.getMangalist().enqueue(object : Callback<MangaResponse> {
             override fun onResponse(call: Call<MangaResponse>, response: Response<MangaResponse> ) {
-                Log.e(TAG,"essaye2")
                 if (response.isSuccessful && response.body() != null) {
                     val mangaResponse: MangaResponse = response.body()!!
-                    Log.e(TAG,"test"+ mangaResponse.top)
-                  //  adapter.updateList(mangaResponse.results)
+                    Log.e(TAG,"TAG "+ mangaResponse.top)
+                    adapter.updateList(mangaResponse.top)
                 }
             }
 
@@ -74,14 +74,18 @@ class MangaFragment : Fragment() {
 
 
         val mangalist = arrayListOf<Manga>().apply {
-            add(Manga("Naruto"))
-            add(Manga("One Piece"))
-            add(Manga("FMA"))
-            add(Manga("Major"))
+            add(Manga("Naruto", "tet"))
+            add(Manga("One Piece", "tetete"))
 
         }
 
         adapter.updateList(mangalist)
+
+
+
+    }
+    private fun OnClickedManga(manga: Manga) {
+        findNavController().navigate(R.id.navigationtoMangaDetail)
     }
 
 }
