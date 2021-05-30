@@ -25,6 +25,7 @@ class MangaDetailFragement : Fragment() {
     private lateinit var textViewStatus:TextView
     private  lateinit var textViewScore: TextView
     private  lateinit var textViewSynopsis: TextView
+    private  lateinit var textViewMagazine: TextView
 
     override fun onCreateView(
             inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +41,7 @@ class MangaDetailFragement : Fragment() {
         textViewStatus= view.findViewById(R.id.manga_detail)
         textViewScore = view.findViewById(R.id.manga_score)
         textViewSynopsis = view.findViewById(R.id.manga_synopsis)
+        textViewMagazine = view.findViewById(R.id.manga_nomMagazine)
         callApi()
         }
 
@@ -52,7 +54,7 @@ class MangaDetailFragement : Fragment() {
                     textViewStatus.text = response.body()!!.status
                     textViewScore.text = response.body()!!.score.toString()
                     textViewSynopsis.text = response.body()!!.synopsis
-
+                    textViewMagazine.text = response.body()!!.serializations.get(0).name
                 }
             }
 

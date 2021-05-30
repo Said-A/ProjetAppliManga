@@ -12,5 +12,6 @@ data class MangaDetailResponse(
 
 data class MangeDetail(
         val mal_id:Int,
-        val type:String
+        val type:String,
+        val name:String
 )

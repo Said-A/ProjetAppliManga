@@ -55,7 +55,7 @@ class MangaAdapter(private var dataSet: List<Manga>, val listener: ((Manga) -> U
         // contents of the view with that element
         val manga:Manga = dataSet[position]
         viewHolder.textView.text = manga.title
-        viewHolder.textView.setOnClickListener {
+        viewHolder.imageView.setOnClickListener {
             listener?.invoke(manga)
         }
 

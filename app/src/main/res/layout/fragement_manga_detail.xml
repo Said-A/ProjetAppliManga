@@ -6,11 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".presentation.detail.MangaDetailFragement">
 
-.    <TextView
+    <TextView
         android:id="@+id/manga_detail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="status"
+        android:layout_marginTop="100dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,17 +21,31 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="score"
-        app:layout_constraintTop_toTopOf="@+id/manga_detail"
+        android:layout_marginTop="100dp"
+        app:layout_constraintTop_toBottomOf="@+id/manga_detail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        />
+
+    <TextView
+        android:id="@+id/manga_nomMagazine"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="synpopsis"
+        android:textSize="12dp"
+        app:layout_constraintTop_toTopOf="@+id/manga_score"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         />
+
     <TextView
         android:id="@+id/manga_synopsis"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="synpopsis"
-        app:layout_constraintTop_toTopOf="@+id/manga_score"
+        android:textSize="12dp"
+        app:layout_constraintTop_toTopOf="@+id/manga_nomMagazine"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
