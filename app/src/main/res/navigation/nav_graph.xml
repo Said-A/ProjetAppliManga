@@ -13,13 +13,18 @@
 
         <action
             android:id="@+id/navigationtoMangaDetail"
-            app:destination="@id/SecondFragment" />
+            app:destination="@id/Fragement_manga_detail" />
     </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
+        android:id="@+id/Fragement_manga_detail"
         android:name="com.example.applimanga.presentation.detail.MangaDetailFragement"
         android:label="@string/second_fragment_label"
         tools:layout="@layout/fragement_manga_detail">
+        <argument
+            android:name="mangaId"
+            app:argType="integer"
+            android:defaultValue="-1"
+            />
 
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"

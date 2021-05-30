@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -64,21 +65,13 @@ class MangaFragment : Fragment() {
         })
 
 
-
-
-        val mangalist = arrayListOf<Manga>().apply {
-            add(Manga("Naruto", "tet"))
-            add(Manga("One Piece", "tetete"))
-
-        }
-
-        adapter.updateList(mangalist)
-
-
-
     }
     private fun OnClickedManga(manga: Manga) {
-        findNavController().navigate(R.id.navigationtoMangaDetail)
+        findNavController().navigate(R.id.navigationtoMangaDetail, bundleOf(
+                "mangaId" to manga.mal_id
+        ))
     }
+
+
 
 }
